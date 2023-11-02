@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../public/fontawesome-free-6.1.2-web/css/all.css"
+    />
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Painel</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      header {
+        background-color: #ff4043;
+        text-align: center;
+        padding: 10px;
+        color: white;
+      }
+
+      header h2 {
+        font-size: 14px;
+        margin-bottom: 3px;
+      }
+
+      header h1 {
+        font-size: 36px;
+      }
+
+      body {
+        background-color: #242424;
+      }
+
+      main {
+        color: white;
+        padding: 15px 20px;
+        border-top: 4px solid white;
+      }
+
+      .register {
+        padding-bottom: 12px;
+        border-bottom: 4px solid white;
+      }
+
+      .register h2,
+      .list h2 {
+        font-size: 32px;
+        border-bottom: 1px solid white;
+      }
+
+      .register form {
+        text-align: center;
+      }
+
+      .register form input {
+        width: 100%;
+        border-radius: 15px;
+        background-color: transparent;
+        border: 2px solid #181818;
+        padding: 14px 8px;
+        font-size: 18px;
+        margin: 8px 0;
+        outline: 0;
+        color: white;
+      }
+
+      .register form button {
+        margin-top: 10px;
+        background-color: #ff4043;
+        color: white;
+        padding: 14px 38px;
+        font-size: 24px;
+        border: 0;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      .register form textarea {
+        width: 100%;
+        resize: none;
+        height: 18vh;
+        border-radius: 15px;
+        background-color: transparent;
+        padding: 15px;
+        color: white;
+        font-size: 20px;
+        border: 2px solid #181818;
+      }
+
+      .list {
+        margin-top: 10px;
+      }
+
+      .new-single-list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #181818;
+        padding: 12px;
+      }
+
+      .new-single-list p {
+        font-size: 18px;
+      }
+
+      .new-single-list a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #ff4043;
+      }
+
+      .feedback {
+        width: 100%;
+        padding: 14px;
+        background-color: #181818;
+        color: white;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Olá, <%= login %>!</h1>
+      <h2>Bem vindo(a) ao painel</h2>
+    </header>
+    <main>
+      <div class="register">
+        <h2>Cadastrar notícia:</h2>
+        <% if (message) { %>
+        <p class="feedback"><%= message %></p>
+        <% } %>
+
+        <form
+          enctype="multipart/form-data"
+          id="registerForm"
+          method="post"
+          action="/admin/cadastrar"
+        >
+          <input
+            required
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Título..."
+          />
+          <input type="file" name="file" />
+          <input
+            required
+            type="text"
+            name="category"
+            id="category"
+            placeholder="Categoria..."
+          />
+          <!--Criar um função para pegar o titulo, deixar em minusculo e separar por "-" -->
+          <input
+            required
+            type="text"
+            name="slug"
+            id="slugNew"
+            placeholder="Slug..."
+          />
+          <input
+            required
+            type="text"
+            name="author"
+            id="author"
+            placeholder="Autor..."
+          />
+          <textarea
+            required
+            placeholder="Conteúdo..."
+            name="content"
+            name="content"
+            id="content"
+          ></textarea>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+      <!--register-->
+      <div class="list">
+        <h2>Todas as notícias:</h2>
+        <div class="news-list">
+          <% for (let i = 0; i < posts.length; i++){ %>
+          <div class="new-single-list">
+            <p>Título: <%=posts[i].titulo %></p>
+            <a href="/admin/deletar/<%= posts[i].id %>">Excluir</a>
+          </div>
+          <!--newSingleList-->
+          <% } %>
+        </div>
+        <!--newsLst-->
+      </div>
+      <!--list-->
+    </main>
+  </body>
+</html>

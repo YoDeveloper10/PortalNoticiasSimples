@@ -1,0 +1,41 @@
+<%- include('partials/header.html')%> 
+
+<main class="new">
+   <div class="center flex flex-a">
+    <div class="single-new">
+      <h2><%= noticia.titulo %></h2>
+      <div class="author-name">
+         <span>POR <%= noticia.autor %></span>
+      </div><!--authorName-->
+      <img src="<%= noticia.img %>" alt="">
+
+      <p><%- noticia.conteudo %></p>
+   </div>
+   <div class="more-read">
+    <h3>Mais lidas</h3>
+    <div class="more-read-news">
+      <% for (let i = 0; i < postsTop.length; i++){ %>
+      <div class="more-read-new flex flex-a">
+        <img src="<%= postsTop[i].img %>" alt="Natureza" />
+        <div class="content-more-read-new">
+          <h3><%= postsTop[i].categoria %></h3>
+          <p>
+            <%- postsTop[i].descricaoCurta %>
+          </p>
+          <a href="<%= postsTop[i].slug %>">Saiba mais</a>
+        </div>
+      </div>
+      <!--moreReadNew-->
+      <% } %>
+    </div>
+    <!--moreReadNews-->
+  </div>
+  <!--moreRead-->
+   </div>
+   <!--center-->
+</main>
+
+<%- include('partials/footer.html')%>
+
+</body>
+</html>

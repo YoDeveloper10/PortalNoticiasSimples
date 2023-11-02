@@ -1,0 +1,33 @@
+<%- include('partials/header.html')%> 
+
+<main  class="search">
+   <div class="center flex flex-a">
+
+      <div class="more-read">
+         <h3>Busca "<%= search%>" possui <%= contagem %> resultados</h3>
+         <div class="more-read-news">
+          <% for (let i = 0; i < posts.length; i++){ %>
+            <div class="more-read-new flex flex-a">
+              <img class="busca-new-img" src="<%= posts[i].img %>" alt="Imagem" />
+              <div class="content-more-read-new busca-new-content">
+                <h3><%= posts[i].titulo %></h3>
+                <p>
+                  <%- posts[i].descricaoCurta %>...
+                </p>
+                <a href="<%= posts[i].slug %>">Saiba mais</a>
+              </div>
+            </div>
+            <!--moreReadNew-->
+           <% } %>
+         </div>
+         <!--moreReadNews-->
+       </div>
+       <!--moreRead-->
+   </div>
+   <!--center-->
+</main>
+
+<%- include('partials/footer.html')%>
+
+</body>
+</html>

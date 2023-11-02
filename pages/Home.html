@@ -1,0 +1,74 @@
+<%- include('partials/header.html')%>
+    <main>
+      <section class="featured">
+        <div class="center">
+          <div class="img-featured flex flex-c">
+            <div class="overlay"></div>
+            <!--overlay-->
+            <div class="author"><h4><%= posts[0].autor %></h4></div>
+            <div class="featured-content">
+              <h2 class="featured-title"><a href="<%= posts[0].slug %>"><%= posts[0].titulo %></a></h2>
+              <p class="description-new">
+                <!--É um traço pois o conteudo vem em HTML e assim é lido de forma HTMl logo so o conteudo-->
+                <%- posts[0].descricaoCurta %>...
+              </p>
+            </div>
+            <!--featuredContent-->
+            <img src="<%= posts[0].img %>" alt="Featured new" />
+          </div>
+        </div>
+        <!--center-->
+      </section>
+      <!--featured-->
+      <section class="other-news">
+        <h2>Últimas publicações</h2>
+        <div class="center flex flex-a">
+          <div class="last-news flex flex-a">
+            <% for (let i = 0; i < posts.length; i++){ %>
+            <div class="new-single">
+              <img
+                src="<%= posts[i].img %>"
+                alt="notícia-single"
+              />
+              <div class="content-new-single">
+                <h4><%= posts[i].categoria %></h4>
+                <h3><%= posts[i].titulo %></h3>
+                <p>
+                  <%- posts[i].descricaoCurta %>...
+                </p>
+                <a href="<%= posts[i].slug %>">Saiba mais</a>
+              </div>
+              <!--contentNewSingle-->
+            </div>
+            <!--newSingle-->
+            <% } %>
+          </div>
+          <!--lastNews-->
+          <div class="more-read">
+            <h3>Mais lidas</h3>
+            <div class="more-read-news">
+              <% for (let i = 0; i < postsTop.length; i++){ %>
+              <div class="more-read-new flex flex-a">
+                <img src="<%= postsTop[i].img %>" alt="Natureza" />
+                <div class="content-more-read-new">
+                  <h3><%= postsTop[i].categoria %></h3>
+                  <p>
+                    <%- postsTop[i].descricaoCurta %>...
+                  </p>
+                  <a href="<%= postsTop[i].slug %>">Saiba mais</a>
+                </div>
+              </div>
+              <!--moreReadNew-->
+              <% } %>
+            </div>
+            <!--moreReadNews-->
+          </div>
+          <!--moreRead-->
+        </div>
+        <!--center-->
+      </section>
+      <!--otherNews-->
+    </main>
+    <%- include('partials/footer.html')%>
+  </body>
+</html>
